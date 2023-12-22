@@ -1,0 +1,33 @@
+﻿<Window x:Class="TTC8440.MVVM.View.HourModal"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TTC8440.MVVM.View"
+        xmlns:vm="clr-namespace:TTC8440.MVVM.ViewModel"
+        mc:Ignorable="d"
+        WindowStyle="None"
+        ResizeMode="NoResize"
+        AllowsTransparency="True"
+        Background="Transparent"
+        ShowInTaskbar="False"
+        WindowStartupLocation="CenterOwner"
+        Title="Hours Done" Height="100" Width="300">
+    <Border Background="Aquamarine"
+            BorderBrush="DarkGray"
+            BorderThickness="2"
+            CornerRadius="20">
+        <StackPanel VerticalAlignment="Center">
+            <StackPanel.DataContext>
+                <vm:HourModalViewModel/>
+            </StackPanel.DataContext>
+            <TextBlock Text="{Binding Output}"
+                       HorizontalAlignment="Center"
+                       Margin="0 0 0 20"/>
+            <Button Content="Close"
+                    Command="{Binding ButtonCommand}"
+                    Width="200"
+                    Height="30"/>
+        </StackPanel>
+    </Border>
+</Window>

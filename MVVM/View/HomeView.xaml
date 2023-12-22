@@ -1,0 +1,385 @@
+﻿<UserControl x:Class="TTC8440.MVVM.View.HomeView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:TTC8440.MVVM.View" 
+             xmlns:viewmodel="clr-namespace:TTC8440.MVVM.ViewModel" xmlns:core="clr-namespace:TTC8440.Core" d:DataContext="{d:DesignInstance Type=core:ObservableObject}"
+             mc:Ignorable="d" 
+             d:DesignHeight="480" d:DesignWidth="800"
+             FontFamily="/Fonts/#Roboto">
+    <StackPanel>
+        <StackPanel.DataContext>
+            <viewmodel:HomeViewModel/>
+        </StackPanel.DataContext>
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Text="Add Hours"
+                Foreground="AntiqueWhite"
+                FontSize="28"
+                HorizontalAlignment="Left"
+                Margin="15 0 0 20"/>
+            <TextBlock Text="Add Projects"
+                Foreground="AntiqueWhite"
+                FontSize="28"
+                HorizontalAlignment="Left"
+                Margin="95 0 0 20"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal"
+                    Margin="0 0 0 10">
+            <Border Width="200"
+                    Height="200"
+                    CornerRadius="10"
+                    Margin="20 0 0 0">
+                <Border.Background>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,2">
+                        <GradientStop Color="Violet" Offset="0.0"/>
+                        <GradientStop Color="DarkViolet" Offset="1"/>
+                    </LinearGradientBrush>
+                </Border.Background>
+                <Grid Margin="10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="60"/>
+                        <ColumnDefinition Width="60"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="20"/>
+                        <RowDefinition Height="20"/>
+                        <RowDefinition Height="20"/>
+                        <RowDefinition Height="20"/>
+                        <RowDefinition Height="65"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <RadioButton x:Name="tupu_hours" 
+                                 Content="Tupu"
+                                 Foreground="#121212"
+                                 Grid.Row="0"
+                                 Grid.Column="0"
+                                 IsChecked="{Binding IsTupuHour}"
+                                 GroupName="hour_users"/>
+                    <RadioButton x:Name="hupu_hours"
+                                 Content="Hupu"
+                                 Foreground="#121212"
+                                 Grid.Row="0"
+                                 Grid.Column="1"
+                                 IsChecked="{Binding IsHupuHour}"
+                                 GroupName="hour_users"/>
+                    <RadioButton x:Name="lupu_hours"
+                                 Content="Lupu"
+                                 Foreground="#121212"
+                                 Grid.Row="0"
+                                 Grid.Column="2"
+                                 IsChecked="{Binding IsLupuHour}"
+                                 GroupName="hour_users"/>
+                    <StackPanel Orientation="Horizontal"
+                                Grid.Row="2"
+                                Grid.Column="0"
+                                Grid.ColumnSpan="2">
+                        <TextBlock Text="Project Id"
+                                   Foreground="#121212"
+                                   Margin="0, 3, 5, 0"/>
+                        <TextBox MinWidth="50"
+                                 MaxWidth="50"
+                                 Text="{Binding ProjectId}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal"
+                                Grid.Row="3"
+                                Grid.Column="0"
+                                Grid.ColumnSpan="2">
+                        <TextBlock Text="Hours"
+                                   Foreground="#121212"
+                                   Margin="0, 3, 5, 0"/>
+                        <TextBox MinWidth="69"
+                                 MaxWidth="69"
+                                 Text="{Binding Hours}"/>
+                    </StackPanel>
+                    <TextBlock Grid.Row="4"
+                               Grid.ColumnSpan="3"
+                               Margin="10"
+                               TextWrapping="Wrap"
+                               Text="{Binding HourOutput}"/>
+                    <Button Content="Submit"
+                            Grid.Column="0"
+                            Grid.ColumnSpan="3"
+                            Grid.Row="5"
+                            Command="{Binding AddHours}"/>
+                </Grid>
+            </Border>
+            <Border Width="400"
+                    Height="200"
+                    Margin="25 0 0 0"
+                    CornerRadius="10">
+                <Border.Resources>
+                    <BooleanToVisibilityConverter x:Key="boo_to_vis"/>
+                </Border.Resources>
+                <Border.Background>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,2">
+                        <GradientStop Color="#5bc3ff" Offset="0.0"/>
+                        <GradientStop Color="#3aa0ff" Offset="1"/>
+                    </LinearGradientBrush>
+                </Border.Background>
+                <Grid Margin="10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="60"/>
+                        <ColumnDefinition Width="60"/>
+                        <ColumnDefinition Width="60"/>
+                        <ColumnDefinition Width="60"/>
+                        <ColumnDefinition Width="60"/>
+                        <ColumnDefinition Width="60"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="20"/>
+                        <RowDefinition Height="20"/>
+                        <RowDefinition Height="20"/>
+                        <RowDefinition Height="20"/>
+                        <RowDefinition Height="20"/>
+                        <RowDefinition Height="20"/>
+                        <RowDefinition Height="26"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <RadioButton Content="Internal Project"
+                                 Foreground="#121212"
+                                 Grid.Row="0"
+                                 Grid.Column="1"
+                                 Grid.ColumnSpan="2"
+                                 GroupName="Project"
+                                 x:Name="Internal"
+                                 IsChecked="{Binding IsInternalProject}"/>
+                    <RadioButton Content="External Project"
+                                 Foreground="#121212"
+                                 Grid.Row="0"
+                                 Grid.Column="3"
+                                 Grid.ColumnSpan="2"
+                                 GroupName="Project"
+                                 x:Name="External"
+                                 IsChecked="{Binding IsExternalProject}"/>
+                    <TextBlock Text="Project lead:"
+                               Foreground="#121212"
+                               Grid.Row="2"
+                               Grid.Column="0"
+                               Grid.ColumnSpan="2"/>
+                    <RadioButton Content="Tupu"
+                                 Foreground="#121212"
+                                 IsChecked="{Binding IsTupuProject}"
+                                 Grid.Row="3"
+                                 Grid.Column="0"
+                                 GroupName="Lead"
+                                 x:Name="Tupu"/>
+                    <RadioButton Content="Hupu"
+                                 Foreground="#121212"
+                                 IsChecked="{Binding IsHupuProject}"
+                                 Grid.Row="4"
+                                 Grid.Column="0"
+                                 GroupName="Lead"
+                                 x:Name="Hupu"/>
+                    <RadioButton Content="Lupu"
+                                 Foreground="#121212"
+                                 IsChecked="{Binding IsLupuProject}"
+                                 Grid.Row="5"
+                                 Grid.Column="0"
+                                 GroupName="Lead"
+                                 x:Name="Lupu"/>
+                    <StackPanel Orientation="Horizontal"
+                                Grid.Row="2"
+                                Grid.Column="2"
+                                Grid.ColumnSpan="4">
+                        <TextBlock Text="Project Name"
+                                   Foreground="#121212"
+                                   Margin="0, 3, 5, 0"/>
+                        <TextBox MinWidth="200"
+                                 MaxWidth="200"
+                                 Text="{Binding ProjectName}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal"
+                                Grid.Row="3"
+                                Grid.Column="2"
+                                Grid.ColumnSpan="4"
+                                Visibility="{Binding IsChecked,ElementName=External,Converter={StaticResource boo_to_vis}}">
+                        <TextBlock Text="Client"
+                                   Foreground="#121212"
+                                   Margin="0, 3, 5, 0"/>
+                        <TextBox MinWidth="210"
+                                 MaxWidth="210"
+                                 Text="{Binding Client}"/>
+                    </StackPanel>
+                    <TextBlock Grid.Row="5"
+                               Grid.RowSpan="2"
+                               Grid.Column="1"
+                               Grid.ColumnSpan="5"
+                               Margin="5 0 0 5"
+                               TextWrapping="Wrap"
+                               Text="{Binding ProjectOutput}"/>
+                    <Button Content="Submit"
+                            Grid.Column="0"
+                            Grid.ColumnSpan="7"
+                            Grid.Row="7"
+                            Command="{Binding AddProject}"/>
+                </Grid>
+            </Border>
+        </StackPanel>
+        <StackPanel>
+            <StackPanel.DataContext>
+                <viewmodel:MainViewModel/>
+            </StackPanel.DataContext>
+            <StackPanel.Resources>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="Background" Value="Transparent"/>
+                    <Setter Property="BorderBrush" Value="Transparent"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Border Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}">
+                                    <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="RenderTransformOrigin" Value="0.5,0.5"/>
+                    <Setter Property="Margin" Value="15 0 0 0"/>
+                    <Setter Property="Padding" Value="0" />
+                    <Setter Property="RenderTransform">
+                        <Setter.Value>
+                            <ScaleTransform ScaleX="1" ScaleY="1" />
+                        </Setter.Value>
+                    </Setter>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Cursor" Value="Hand"/>
+                            <Trigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)"
+                                                 To="1.05" Duration="0:0:0.2" />
+                                        <DoubleAnimation Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)"
+                                                 To="1.05" Duration="0:0:0.2" />
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.EnterActions>
+                            <Trigger.ExitActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)"
+                                                 To="1" Duration="0:0:0.2" />
+                                        <DoubleAnimation Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)"
+                                                 To="1" Duration="0:0:0.2" />
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.ExitActions>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </StackPanel.Resources>
+            <TextBlock Text="Users"
+                    Foreground="AntiqueWhite"
+                    FontSize="24"
+                    Margin="0 10 0 10"/>
+            <StackPanel Orientation="Horizontal">
+                <Border Width="150"
+                        Height="150"
+                        CornerRadius="10"
+                        Margin="10 0 0 0">
+                    <Border.Background>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,2">
+                            <GradientStop Color="blue" Offset="0.0"/>
+                            <GradientStop Color="#2100a6" Offset="0.6"/>
+                        </LinearGradientBrush>
+                    </Border.Background>
+                    <Button Command="{Binding UserViewCommand}"
+                            CommandParameter="Tupu">
+                        <StackPanel>
+                            <TextBlock Text="Tupu" 
+                                   HorizontalAlignment="Center"
+                                   Foreground="AntiqueWhite"
+                                   FontSize="25"
+                                   Margin="0,0,0,0"/>
+                            <Image Width="120"
+                                   Height="100"
+                                   Source="/Images/Tupu.png"
+                                   HorizontalAlignment="Center"
+                                   Margin="0,5,0,0"/>
+                        </StackPanel>
+                    </Button>
+                </Border>
+                <Border Width="150"
+                        Height="150"
+                        CornerRadius="10">
+                    <Border.Background>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,2">
+                            <GradientStop Color="green" Offset="0.0"/>
+                            <GradientStop Color="#053d00" Offset="0.6"/>
+                        </LinearGradientBrush>
+                    </Border.Background>
+                    <Button Command="{Binding UserViewCommand}"
+                            CommandParameter="Hupu">
+                        <StackPanel>
+                            <TextBlock Text="Hupu" 
+                                   HorizontalAlignment="Center"
+                                   Foreground="AntiqueWhite"
+                                   FontSize="25"
+                                   Margin="0,0,0,0"/>
+                            <Image Width="120"
+                                   Height="100"
+                                   Source="/Images/Hupu.png"
+                                   HorizontalAlignment="Center"
+                                   Margin="0,5,0,0"/>
+                        </StackPanel>
+                    </Button>
+                </Border>
+                <Border Width="150"
+                        Height="150"
+                        CornerRadius="10">
+                    <Border.Background>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,2">
+                                <GradientStop Color="red" Offset="0.0"/>
+                                <GradientStop Color="#680000" Offset="0.6"/>
+                            </LinearGradientBrush>
+                        </Border.Background>
+                    <Button Command="{Binding UserViewCommand}"
+                            CommandParameter="Lupu">
+                        <StackPanel>
+                            <TextBlock Text="Lupu" 
+                                   HorizontalAlignment="Center"
+                                   Foreground="AntiqueWhite"
+                                   FontSize="25"
+                                   Margin="0,0,0,0"/>
+                            <Image Width="120"
+                                   Height="100"
+                                   Source="/Images/Lupu.png"
+                                   HorizontalAlignment="Center"
+                                   Margin="0,5,0,0"/>
+                        </StackPanel>
+                    </Button>
+                </Border>
+                <Border Width="150" Height="150" CornerRadius="10">
+                    <Border.Background>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                            <GradientStop Color="Blue" Offset="0"/>
+                            <GradientStop Color="Red" Offset="0.5"/>
+                            <GradientStop Color="Green" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Border.Background>
+                    <Button Command="{Binding UserViewCommand}"
+                            CommandParameter="All">
+                        <Grid>
+                            <Image Width="140" 
+                               Source="/Images/thl.png" 
+                               HorizontalAlignment="Center" 
+                               Margin="5, 30, 0, 0"/>
+                            <TextBlock Text="Everyone" 
+                                   HorizontalAlignment="Center"
+                                   Foreground="AntiqueWhite"
+                                   FontSize="25"
+                                   Margin="0,-10,0,0"/>
+                        </Grid>
+                    </Button>
+                </Border>
+            </StackPanel>
+        </StackPanel>
+    </StackPanel>
+</UserControl>

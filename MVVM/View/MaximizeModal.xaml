@@ -1,0 +1,25 @@
+﻿<Window x:Class="TTC8440.MVVM.View.MaximizeModal"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm="clr-namespace:TTC8440.MVVM.ViewModel"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterOwner"
+        WindowStyle="None"
+        ShowInTaskbar="False"
+        Title="MaximizeModal" Height="100" Width="300">
+    <StackPanel VerticalAlignment="Center"
+                HorizontalAlignment="Center">
+        <StackPanel.DataContext>
+            <vm:MaximizeModalViewModel/>
+        </StackPanel.DataContext>
+        <TextBlock Text="I'm not a very good front-end dev :("
+                   Margin="10"/>
+        <Button Content="Close"
+                Command="{Binding CloseModal}"
+                Margin="10"
+                Width="100"
+                Height="30"/>
+    </StackPanel>
+</Window>

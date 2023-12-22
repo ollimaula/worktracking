@@ -1,0 +1,173 @@
+﻿<UserControl x:Class="TTC8440.MVVM.View.HourView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:TTC8440.MVVM.View" 
+             xmlns:viewmodel="clr-namespace:TTC8440.MVVM.ViewModel"
+             mc:Ignorable="d" 
+             d:DesignHeight="500" d:DesignWidth="800"
+             FontFamily="/Fonts/#Roboto">
+    <StackPanel>
+        <StackPanel.DataContext>
+            <viewmodel:HourViewModel/>
+        </StackPanel.DataContext>
+        <StackPanel Orientation="Horizontal">
+            <StackPanel.Resources>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="Background" Value="Transparent"/>
+                    <Setter Property="BorderBrush" Value="Transparent"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Border Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}">
+                                    <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="RenderTransformOrigin" Value="0.5,0.5"/>
+                    <Setter Property="Margin" Value="15 0 0 0"/>
+                    <Setter Property="Padding" Value="0"/>
+                    <Setter Property="RenderTransform">
+                        <Setter.Value>
+                            <ScaleTransform ScaleX="1" ScaleY="1"/>
+                        </Setter.Value>
+                    </Setter>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Cursor" Value="Hand"/>
+                            <Trigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)"
+                                                 To="1.05" Duration="0:0:0.2" />
+                                        <DoubleAnimation Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)"
+                                                 To="1.05" Duration="0:0:0.2" />
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.EnterActions>
+                            <Trigger.ExitActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)"
+                                                 To="1" Duration="0:0:0.1" />
+                                        <DoubleAnimation Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)"
+                                                 To="1" Duration="0:0:0.1" />
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.ExitActions>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </StackPanel.Resources>
+            <Border Width="290"
+                Height="80"
+                HorizontalAlignment="Left"
+                Margin="20 50 0 0"
+                CornerRadius="10">
+                <Border.Background>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,2">
+                        <GradientStop Color="#5bc3ff" Offset="0.0"/>
+                        <GradientStop Color="#3aa0ff" Offset="1"/>
+                    </LinearGradientBrush>
+                </Border.Background>
+                <Button Command="{Binding ButtonCommand}"
+                        CommandParameter="-1">
+                    <StackPanel>
+                        <TextBlock Text="Show hours by project"
+                               FontSize="26"/>
+                        <StackPanel Orientation="Horizontal"
+                                    HorizontalAlignment="Center"
+                                    Margin="0 10 0 0">
+                            <TextBlock Text="Project Id "/>
+                            <TextBox x:Name="id"
+                                     MinWidth="50"
+                                     MaxWidth="50"
+                                     Text="{Binding ProjectId}"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Button>
+            </Border>
+            <Border Width="290"
+                Height="80"
+                HorizontalAlignment="Left"
+                Margin="20 50 0 0"
+                CornerRadius="10">
+                <Border.Background>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,2">
+                        <GradientStop Color="#5bc3ff" Offset="0.0"/>
+                        <GradientStop Color="#3aa0ff" Offset="1"/>
+                    </LinearGradientBrush>
+                </Border.Background>
+                <Button Command="{Binding ButtonCommand}"
+                        CommandParameter="-2">
+                    <StackPanel>
+                        <TextBlock Text="Show hours by user"
+                               FontSize="26"/>
+                        <StackPanel Orientation="Horizontal"
+                                    HorizontalAlignment="Center"
+                                    Margin="0 10 0 0">
+                            <RadioButton Content="Tupu"
+                                         Foreground="#121212"
+                                         IsChecked="{Binding IsTupu}"
+                                         x:Name="Tupu"/>
+                            <RadioButton Content="Hupu"
+                                         Foreground="#121212"
+                                         IsChecked="{Binding IsHupu}"
+                                         Margin="10 0 10 0"
+                                         x:Name="Hupu"/>
+                            <RadioButton Content="Lupu"
+                                         Foreground="#121212"
+                                         IsChecked="{Binding IsLupu}"
+                                         x:Name="Lupu"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Button>
+            </Border>
+        </StackPanel>
+        <Border Width="600"
+                Height="280"
+                Margin="20 40 0 0"
+                HorizontalAlignment="Left"
+                CornerRadius="10">
+            <Border.Background>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,2">
+                    <GradientStop Color="violet" Offset="0.0"/>
+                    <GradientStop Color="DarkViolet" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.Background>
+            <StackPanel HorizontalAlignment="Center">
+                <TextBlock Text="Show hours by week"
+                           FontSize="30"
+                           HorizontalAlignment="Center"
+                           Margin="0 20 0 5"/>
+                <ItemsControl ItemsSource="{Binding Buttons}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <UniformGrid Columns="9" />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Button Content="{Binding Label}" 
+                                    Command="{Binding DataContext.ButtonCommand, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}" 
+                                    CommandParameter="{Binding Name}"
+                                    Style="{StaticResource WeekButtonTheme}"
+                                    Margin="4"
+                                    Padding="5"
+                                    MinHeight="20"
+                                    MinWidth="30">
+                            </Button>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </StackPanel>
+        </Border>
+    </StackPanel>
+</UserControl>

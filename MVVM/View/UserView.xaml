@@ -1,0 +1,18 @@
+﻿<UserControl x:Class="TTC8440.MVVM.View.UserView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:TTC8440.MVVM.View"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800"
+             FontFamily="/Fonts/#Roboto">
+    <StackPanel>
+        <TextBlock x:Name="Title"
+                   Foreground="AntiqueWhite"
+                   FontSize="36"
+                   HorizontalAlignment="Center"
+                   Margin="0 0 35 0"/>
+        <StackPanel x:Name="UserPanel"/>
+    </StackPanel>
+</UserControl>

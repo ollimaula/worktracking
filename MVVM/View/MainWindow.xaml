@@ -1,0 +1,110 @@
+﻿<Window x:Class="TTC8440.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:viewModel="clr-namespace:TTC8440.MVVM.ViewModel" d:DataContext="{d:DesignInstance Type=viewModel:MainViewModel}"
+        mc:Ignorable="d"
+        Height="600" Width="925"
+        WindowStyle="SingleBorderWindow"
+        Background="Transparent"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="CanMinimize"
+        FontFamily="/Fonts/#Roboto"
+        Title="Time Tracking">
+    <Window.DataContext>
+        <viewModel:MainViewModel/>
+    </Window.DataContext>
+    <WindowChrome.WindowChrome>
+        <WindowChrome GlassFrameThickness="0" 
+                      CornerRadius="40" 
+                      CaptionHeight="0" 
+                      UseAeroCaptionButtons="False"/>
+    </WindowChrome.WindowChrome>
+    <Border Background="#272537"
+            CornerRadius="20">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="75"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Border Grid.Row="0" 
+                    Background="DarkSlateBlue"
+                    Grid.ColumnSpan="2"
+                    CornerRadius="20 20 0 0"
+                    x:Name="CustomTitleBar"
+                    PreviewMouseMove="CustomTitleBar_PreviewMouseMove"
+                    PreviewMouseLeftButtonDown="CustomTitleBar_PreviewMouseLeftButtonDown">
+                <StackPanel Orientation="Horizontal"
+                            HorizontalAlignment="Right"
+                            Margin="10 0 20 0">
+                    <Button x:Name="MinimizeButton"
+                            PreviewMouseLeftButtonUp="MinimizeButton_PreviewMouseLeftButtonUp"
+                            Style="{StaticResource TitleBarButtonTheme}">
+                        <Image Source="../../Images/close.png"/>
+                    </Button>
+                    <Button Margin="10 0 10 0"
+                            x:Name="MaximizeButton"
+                            PreviewMouseLeftButtonUp="MaximizeButton_PreviewMouseLeftButtonUp"
+                            Style="{StaticResource TitleBarButtonTheme}">
+                        <Image Source="../../Images/maximize.png"/>
+                    </Button>
+                    <Button Margin="0 0 10 0"
+                            x:Name="ExitButton"
+                            PreviewMouseLeftButtonUp="ExitButton_PreviewMouseLeftButtonUp"
+                            Style="{StaticResource TitleBarButtonTheme}">
+                        <Image Source="../../Images/cross.png"/>
+                    </Button>
+                </StackPanel>
+            </Border>
+            <Grid Grid.Row="1" Background="#272550"/>
+            <Border Grid.Row="2" 
+                    Background="#272550"
+                    CornerRadius="0 0 0 20"/>
+            <StackPanel Grid.Row="1"
+                            Orientation="Horizontal">
+                <Image Width="35"
+                           Source="../../Images/icons8-clock-70.png"
+                           Margin="10, 0, 0, 5"/>
+                <TextBlock Text="Time Tracking"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Left"
+                       Foreground="AntiqueWhite"
+                       FontSize="22"
+                       Margin="5 0 0 0"/>
+            </StackPanel>
+            <StackPanel Grid.Row="2">
+                <RadioButton Content="Home"
+                                 x:Name="HomeRadioButton"
+                                 Height="50"
+                                 Foreground="AntiqueWhite"
+                                 FontSize="14"
+                                 Style="{StaticResource MenuButtonTheme}"
+                                 IsChecked="True"
+                                 Command="{Binding HomeViewCommand}"/>
+                <RadioButton Content="Projects"
+                                 Height="50"
+                                 Foreground="AntiqueWhite"
+                                 FontSize="14"
+                                 Style="{StaticResource MenuButtonTheme}"
+                                 Command="{Binding ProjectViewCommand}"/>
+                <RadioButton Content="Hours"
+                                 Height="50"
+                                 Foreground="AntiqueWhite"
+                                 FontSize="14"
+                                 Style="{StaticResource MenuButtonTheme}"
+                                 Command="{Binding HourViewCommand}"/>
+            </StackPanel>
+            <ContentControl Grid.Row="1"
+                            Grid.RowSpan="2"
+                            Grid.Column="1"
+                            Margin="20, 30, 0, 0"
+                            Content="{Binding CurrentView}"/>
+        </Grid>
+    </Border>
+</Window>
